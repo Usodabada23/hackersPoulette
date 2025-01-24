@@ -1,0 +1,11 @@
+{
+    "name": "redab/hackers",
+    "autoload": {
+        "psr-4": {
+            "Redab\\Hackers\\": "src/"
+        }
+    },
+    "require": {
+        "google/recaptcha": "^1.3"
+    }
+}
