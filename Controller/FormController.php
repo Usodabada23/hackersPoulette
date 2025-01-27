@@ -28,8 +28,20 @@ class formController{
             } 
     }
     function submit(){
-        if(isset($_POST["lastname"]) && isset($_POST["firstname"]) && isset($_POST["email"]) && isset($_POST["description"]) && $_POST["file"]){
-            
+        if(isset($_POST["lastname"]) && isset($_POST["firstname"]) && isset($_POST["email"]) && isset($_POST["description"])){
+            $fname = $_POST["firstname"];
+            $lname = $_POST["lastname"];
+            $email = $_POST["email"];
+            $description = $_POST["description"];
+
+            if(!Client::verifLastnameAndFirstname($lname) && !Client::verifLastnameAndFirstname($fname) && !Client::verifEmail($email)){
+                echo "lastname ,firstname or email isn't valid ";
+                exit();
+            }else{
+                $newClient = new Client($lname,$fname,$email);
+                $newClient->addClient();
+                $client_id = $newClient->getIdByEmail($email);
+            }
         }
     }
 }
