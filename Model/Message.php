@@ -1,26 +1,25 @@
 <?php
-require_once './Database.php';
+require_once 'Database.php';
 
 class Message{
     private $db;
     private int $id_client;
     private string $description;
-    private string $publish_date;
+    private string $file;
 
-    public function __construct(){
+    public function __construct(int $id_client,string $description,string $file){
         $db = new Database();
     }
 
     // get and set 
     public function getClientId(){return $this->id_client;}
-    public function getPublishDate(){return $this->publish_date;}
     public function getDescription(){return $this->description;}
 
 
     public function saveMessage(){
-        $sql = "INSERT INTO messages (description, publish_date, id_client) VALUES (?,?,?)";
+        $sql = "INSERT INTO messages (description,file,publish_date,id_client) VALUES (?,?,CURRENT TIMESTAMP,?)";
         $stmt= $this->db->prepare($sql);
-        $stmt->execute([$this->description,$this->publish_date, $this->id_client]);
+        $stmt->execute([$this->description,$this->file, $this->id_client]);
     }
     public function deleteMessage($id){
         try{

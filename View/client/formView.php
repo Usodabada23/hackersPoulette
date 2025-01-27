@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <script async src="https://www.google.com/recaptcha/api.js" defer></script>
     <link rel="stylesheet" href="./public/css/style.css">
-    <script src="./public/js/validation/formValidation.js" defer></script>
+    <script src="http://localhost/hackers/public/js/validation/formValidation.js" defer></script>
     <title>Hackers Poulette</title>
 </head>
 <body>
 <div class="content">
     <h1>Hackers Poulette</h1>
 </div>
-<form action="" method="POST">
+<form id="form" action="" method="POST">
     <div class="field">
         <label class="label">Support Form</label>
         <label class="label">Tell us how we can help.</label>
@@ -21,17 +21,19 @@
     <div class="field">
         <label class="label">Firstname</label>
         <div class="control">
-            <input class="input" type="text" placeholder="e.g Alex" name="firstname">
+            <input class="input" type="text" placeholder="e.g Alex" name="firstname" id="firstname" required>
+            <span id="fnameSpan"></span>
         </div>
         <label class="label">Lastname</label>
         <div class="control">
-            <input class="input" type="text" placeholder="e.g Smith" name="lastname">
+            <input class="input" type="text" placeholder="e.g Smith" name="lastname" id="lastname" required>
+            <span id="lnameSpan"></span>
         </div>
     </div>
     <div class="field">
         <label class="label">Email</label>
         <div class="control">
-            <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" name="email">
+            <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" name="email" id="email"required>
         </div>
     </div>
     <div class="field">
@@ -44,7 +46,7 @@
         <span class="file-cta">
         <span class="file-label">Info file… </span>
         </span>
-        <span class="file-name" id="span-filename">(JPG, PNG, GIF)</span>
+        <span class="file-name" id="span-filename">(JPG, PNG, GIF) size max 2MB</span>
     </label>
     </div>
     <div class="field">
@@ -61,28 +63,3 @@
 </form>
 </body>
 </html>
-
-<?php
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-function verifyReCaptcha(){
-   if(isset($_POST["ok"])){
-        $gRecaptchaResponse = $_POST['g-recaptcha-response'];
-        $remoteIp = $_SERVER['REMOTE_ADDR'];
-
-        $recaptcha = new ReCaptcha\ReCaptcha("6LfQ_MEqAAAAAFqpZ_JAxEpEHWnWNOHLqnWIWop7");
-        $resp = $recaptcha->setExpectedHostname('localhost')
-                        ->verify($gRecaptchaResponse, $remoteIp);
-
-        if ($resp->isSuccess()) {
-            echo "Verified!";
-        } else {
-            $errors = $resp->getErrorCodes();
-            var_dump($errors);
-        } 
-    } 
-}
-verifyReCaptcha();
-
-
-?>

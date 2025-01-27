@@ -2,7 +2,7 @@
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
 
-require_once './Database.php';
+require_once 'Database.php';
 
 class Client{
 
@@ -10,7 +10,6 @@ class Client{
     private string $lastname;
     private string $firstname;
     private string $email; 
-    private string $role;
 
     public function __construct(string $lastname,string $firstname,string $email){
         $this->db = new Database();
@@ -24,7 +23,6 @@ class Client{
     public function getLastname(){return $this->lastname;}
     public function getFirstname(){return $this->firstname;}
     public function getEmail(){return $this->email;}
-    public function getMessage(){return $this->message;}
 
     public function setLastname(string $text){
         if(strlen($text)>255 || strlen($text)<2){
@@ -52,9 +50,9 @@ class Client{
         }       
     }
     
-    public static function getIdByEmail($email){
+    public function getIdByEmail(){
         $stmt = $this->db->prepare("SELECT id FROM clients WHERE email = ?");
-        $id = $stmt->execute([$email]);
+        $id = $stmt->execute([$this->email]);
         return $id;  
     }
 
