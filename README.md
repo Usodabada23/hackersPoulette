@@ -80,3 +80,10 @@ Le projet prend en compte les bonnes pratiques de sécurité :
 - **HTML/CSS** : Structure et design du formulaire, avec **Bulma** pour le design.
 - **JavaScript** : Validation côté client pour améliorer l'expérience utilisateur.
 - **Google reCAPTCHA** : Pour la protection contre les bots et les soumissions de spam.
+
+---
+
+## 🌟 En cours ... 
+- Envoi d'e-mails : Lorsque le message est validé, un e-mail de confirmation pourrait être envoyé à l'utilisateur pour confirmer la réception de son message (via une bibliothèque comme SwiftMailer).
+- Dashboard Admin : Un tableau de bord pour afficher, gérer et suivre les messages reçus par l'équipe support.
+  
