@@ -6,14 +6,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <script async src="https://www.google.com/recaptcha/api.js" defer></script>
     <link rel="stylesheet" href="./public/css/style.css">
+    <script src='http://localhost/hackers/public/js/form/notifications.js' defer></script>
     <script src="http://localhost/hackers/public/js/validation/formValidation.js" defer></script>
+    <script src="http://localhost/hackers/public/js/form/updateFileName.js" defer></script>
     <title>Hackers Poulette</title>
 </head>
 <body>
 <div class="content">
     <h1>Hackers Poulette</h1>
 </div>
-<form id="form" action="" method="POST">
+<form id="form" action="" method="POST" enctype="multipart/form-data">
     <div class="field">
         <label class="label">Support Form</label>
         <label class="label">Tell us how we can help.</label>
@@ -42,7 +44,7 @@
     </div>
     <div class="file is-info has-name">
     <label class="file-label">
-        <input class="file-input" type="file" name="resume" />
+        <input class="file-input" type="file" name="file" id="file" onchange="updateFileName()"  />
         <span class="file-cta">
         <span class="file-label">Info file… </span>
         </span>

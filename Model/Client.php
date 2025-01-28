@@ -1,7 +1,9 @@
 <?php
-require_once 'C:\xampp\htdocs\hackers\vendor\egulias\email-validator\src\EmailValidator.php';
-require_once 'C:\xampp\htdocs\hackers\vendor\egulias\email-validator\src\Validation\RFCValidation.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once 'Database.php';
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
+
 
 class Client{
 
@@ -23,10 +25,10 @@ class Client{
     public function getFirstname(){return $this->firstname;}
     public function getEmail(){return $this->email;}
     
-    public function getIdByEmail(){
-        $stmt = $this->db->prepare("SELECT id FROM clients WHERE email = ?");
-        $id = $stmt->execute([$this->email]);
-        return $id;  
+    public function getIdByEmail() {
+        $stmt = $this->db->getDb()->prepare("SELECT id FROM clients WHERE email = ?");
+        $stmt->execute([$this->email]);
+        return $stmt->fetchColumn(); 
     }
 
     public static function verifLastnameAndFirstname(string $text){
@@ -42,7 +44,7 @@ class Client{
     }
     public function addClient(){
         $sql = "INSERT INTO clients (lastname,firstname,email) VALUES (?,?,?)";
-        $stmt= $this->db->prepare($sql);
+        $stmt= $this->db->getDb()->prepare($sql);
         $stmt->execute([$this->lastname,$this->firstname, $this->email]);
     }
 

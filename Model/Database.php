@@ -1,13 +1,25 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 class Database{
     private $db;
     public function __construct(){
+        $hostname = $_ENV["HOST_NAME"];
+        $db_name = $_ENV["DATABASE_NAME"];
+        $user = $_ENV["USER"];
+        $pwd = $_ENV["PWD_DB"];
         try{
-            $db = new PDO('mysql:host=localhost:3307;dbname=hackers_poulette;charset=utf8', 'root', '');
-            return $db;
+            $this->db = new PDO('mysql:host='.$hostname.';dbname='.$db_name.';charset=utf8',$user, $pwd);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(Exception $e){
             echo $e->getMessage();
             exit();
         }
+    }
+    public function getDb() {
+        return $this->db;
     }
 }
