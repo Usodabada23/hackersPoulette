@@ -85,6 +85,7 @@ Le projet prend en compte les bonnes pratiques de sécurité :
 - **HTML/CSS** : Structure et design du formulaire, avec **Bulma** pour le design.
 - **JavaScript** : Validation côté client pour améliorer l'expérience utilisateur.
 - **Google reCAPTCHA** : Pour la protection contre les bots et les soumissions de spam.
+- **Cloudinary**: retourne une url où a été uploader l'image qui sera stocké en db. 
 
 ---
 
