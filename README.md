@@ -44,6 +44,9 @@ Le formulaire utilise **Google reCAPTCHA** pour empêcher les soumissions automa
 ### 5. **Message de confirmation**  
 Après une soumission réussie, un message de confirmation est affiché à l'utilisateur pour lui indiquer que son message a bien été envoyé.
 
+![Formulaire de contact](public/images/HackersPoulettev1Form.png)
+![Message has been sent !](public/images/HackersPoulettev1FormMessageSent.png)
+
 ---
 
 ## ⚙️ Structure du projet
@@ -59,7 +62,9 @@ Le projet suit une structure **MVC** (Modèle-Vue-Contrôleur), permettant une s
 ### Structure des tables
 
 - **clients** : Contient les informations des clients (nom, prénom, email).
+![Enregistrement d'un client](public/images/client%20dans%20la%20db.png)
 - **messages** : Contient les messages envoyés par les utilisateurs (description, référence à un client, URL du fichier si fourni,la date de la premiere sauvegarde).
+![Enregistrement d'un message par un cliebt](public/images/messages%20dans%20la%20db.png)
 
 ---
 
